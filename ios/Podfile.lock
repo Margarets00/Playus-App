@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - youtube_api (0.2.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - youtube_api (from `.symlinks/plugins/youtube_api/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  youtube_api:
+    :path: ".symlinks/plugins/youtube_api/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  youtube_api: 3e3c2faa0cf3f296204bcc93284cdb097f42cdd6
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.9.3

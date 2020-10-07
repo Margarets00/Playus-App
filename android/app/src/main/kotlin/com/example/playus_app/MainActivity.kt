@@ -1,4 +1,4 @@
-package com.example.playus_app
+package com.margarets.playus_app
 
 import io.flutter.embedding.android.FlutterActivity
 

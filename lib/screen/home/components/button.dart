@@ -29,8 +29,10 @@ class Button extends StatelessWidget {
                   text,
                   style: TextStyle(fontSize: 53, color: kSecondaryColor),
                 ),
-                Icon(IconData(iconCode, fontFamily: 'MaterialIcons'),
-                    size: 45, color: kSecondaryColor)
+                (iconCode == null
+                    ? Text('')
+                    : (Icon(IconData(iconCode, fontFamily: 'MaterialIcons'),
+                        size: 45, color: kSecondaryColor))),
               ])),
           Positioned.fill(
               child: Material(

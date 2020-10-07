@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:playus_app/screen/home/home_screen.dart';
 import 'package:playus_app/constants.dart';
-import 'package:playus_app/screen/home/components/button.dart';
 import 'dart:developer';
-
-import 'package:youtube_api/youtube_api.dart';
-import 'package:html_unescape/html_unescape.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -23,7 +19,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: kPrimaryColor,
         primaryColor: kPrimaryColor,
-        fontFamily: 'headline',
+        fontFamily: 'headline_eng',
+        textTheme: TextTheme(
+            headline2: TextStyle(
+                fontFamilyFallback: ['blackHanSans'],
+                fontSize: 30,
+                wordSpacing: -8,
+                color: kTextColor)),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         splashColor: kPrimaryColor.withOpacity(0.5),
       ),
@@ -79,6 +81,7 @@ class _Intro extends State<Intro> {
                       Button(
                         text: 'START',
                         iconCode: 0xe5e1,
+                        wordspace: 0.0,
                         isClick: () {
                           Navigator.push(
                               context,
@@ -103,7 +106,7 @@ class _Intro extends State<Intro> {
                         child: header(0.5, kTextColor, -15.0, intro),
                       ),
                     ])),
-              )
+              ),
             ],
           ),
         ),

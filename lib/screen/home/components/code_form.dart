@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:playus_app/constants.dart';
+import 'package:playus_app/screen/home/components/send.dart';
+import 'package:playus_app/screen/home/components/partyRoom.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class CodeForm extends StatefulWidget {
@@ -36,7 +38,7 @@ class _CodeForm extends State<CodeForm> {
               ),
               Navigation(),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 45),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,12 +48,16 @@ class _CodeForm extends State<CodeForm> {
                             top: MediaQuery.of(context).size.height * 0.2),
                       ),
                       Text(
-                        'ENTER YOUR CODE!',
+                        'ENTER PARTY CODE!',
                         textAlign: TextAlign.left,
-                        style: TextStyle(fontSize: 40),
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height * 0.03),
                       ),
                       PinCodeTextField(
-                        length: 6,
+                        length: 5,
                         appContext: context,
                         obscureText: false,
                         autoFocus: true,
@@ -67,7 +73,7 @@ class _CodeForm extends State<CodeForm> {
                           fieldWidth: 35,
                           activeFillColor: kPrimaryColor,
                         ),
-                        animationType: AnimationType.scale,
+                        animationType: AnimationType.fade,
                         animationDuration: Duration(milliseconds: 300),
                         backgroundColor: Colors.transparent,
                         enableActiveFill: true,
@@ -80,10 +86,18 @@ class _CodeForm extends State<CodeForm> {
                           fontWeight: FontWeight.bold,
                         ),
                         onCompleted: (v) {
-                          print("Completed");
+                          //roomPass(textEditingController.text).then((value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    PartyRoom(code: v),
+                              ));
+                          //}).catchError((e) => print('빠꾸'));
                         },
                         onChanged: (value) {
-                          print(value);
+                          //print(value);
+                          //print(textEditingController.text);
                         },
                         beforeTextPaste: (text) {
                           print("Allowing to paste $text");
@@ -91,7 +105,31 @@ class _CodeForm extends State<CodeForm> {
                           //but you can show anything you want here, like your pop up saying wrong paste format or etc
                           return true;
                         },
-                      )
+                        dialogConfig: DialogConfig(
+                          dialogTitle: 'Party Code',
+                        ),
+                      ),
+                      Button(
+                        text: 'START',
+                        wordspace: 0.0,
+                        //iconCode: 0xe5e1,
+                        isClick: () {
+                          if (textEditingController.text.length == 5) {
+                            roomPass(textEditingController.text).then((value) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        PartyRoom(
+                                            code: textEditingController.text),
+                                  ));
+                            }).catchError((e) => print('빠꾸'));
+                            /* */
+                          } else {
+                            print('글자 다 입력 안함');
+                          }
+                        },
+                      ),
                     ],
                   ))
             ])));
